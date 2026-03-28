@@ -1,4 +1,6 @@
-export const resumeData = {
+import type { ResumeData } from '../types/resume';
+
+export const resumeData: ResumeData = {
   name: 'Nishant Sharma',
   title: 'Growth Marketing Manager | Web3 Strategist | Community Builder',
   tagline:
@@ -9,8 +11,9 @@ export const resumeData = {
   location: 'Ghaziabad, India',
   linkedin: 'https://linkedin.com/in/avnishant',
   availability: 'Open to remote and relocation',
-  profileImage: '/1768716711733_(1).jpeg',
-  resumePdf: '/Nishant_Sharmaa_Resume.docx_(1).pdf',
+  profileImage: '/nishant-sharma-profile.webp',
+  profileImageFallback: '/nishant-sharma-profile.jpeg',
+  resumePdf: '/nishant-sharma-resume.pdf',
 
   stats: [
     { label: 'Years Experience', value: '14+' },

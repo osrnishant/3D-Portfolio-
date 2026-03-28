@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { resumeData } from '../data/resume';
+import type { NavLink } from '../types/resume';
 
-const navLinks = [
+const navLinks: NavLink[] = [
   { label: 'ABOUT', href: '#about' },
   { label: 'WORK', href: '#work' },
   { label: 'CONTACT', href: '#contact' },
@@ -54,7 +55,12 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  {...(link.download ? { download: 'Nishant_Sharma_Resume.pdf' } : {})}
+                  {...(link.download ? {
+                    download: 'Nishant_Sharma_Resume.pdf',
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    'aria-label': 'Download resume PDF'
+                  } : {})}
                   className="text-sm text-slate-400 hover:text-white transition-colors duration-300 tracking-wider font-medium"
                 >
                   {link.label}
@@ -86,7 +92,12 @@ export default function Navbar() {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  {...(link.download ? { download: 'Nishant_Sharma_Resume.pdf' } : {})}
+                  {...(link.download ? {
+                    download: 'Nishant_Sharma_Resume.pdf',
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    'aria-label': 'Download resume PDF'
+                  } : {})}
                   onClick={() => setMobileOpen(false)}
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}

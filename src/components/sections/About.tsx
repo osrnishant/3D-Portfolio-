@@ -117,6 +117,9 @@ export default function About() {
               <a
                 href={resumeData.resumePdf}
                 download="Nishant_Sharma_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download Nishant Sharma's resume as PDF"
                 className="inline-flex items-center gap-2 text-sm text-primary-400 hover:text-primary-300 transition-colors tracking-wider"
               >
                 <FileText size={14} />
