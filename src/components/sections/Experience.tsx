@@ -3,6 +3,8 @@ import { useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { resumeData } from '../../data/resume';
 
+const INITIAL_VISIBLE = 5;
+
 function ExperienceCard({
   role,
   company,
@@ -27,7 +29,7 @@ function ExperienceCard({
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.08 }}
+      transition={{ duration: 0.6, delay: Math.min(index, 4) * 0.08 }}
       className="relative pl-8 sm:pl-10 pb-10 last:pb-0 group"
     >
       <div className="absolute left-0 top-2 w-3 h-3 rounded-full border-2 border-primary-400 bg-dark-950 z-10 group-hover:bg-primary-400 transition-colors duration-300" />
@@ -90,6 +92,13 @@ function ExperienceCard({
 export default function Experience() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleExperience = showAll
+    ? resumeData.experience
+    : resumeData.experience.slice(0, INITIAL_VISIBLE);
+
+  const hiddenCount = resumeData.experience.length - INITIAL_VISIBLE;
 
   return (
     <section id="experience" className="relative py-24 sm:py-32 px-6 sm:px-8">
@@ -111,10 +120,41 @@ export default function Experience() {
         </motion.div>
 
         <div>
-          {resumeData.experience.map((exp, i) => (
+          {visibleExperience.map((exp, i) => (
             <ExperienceCard key={exp.company + exp.role} {...exp} index={i} />
           ))}
         </div>
+
+        {!showAll && hiddenCount > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.5 }}
+            className="mt-8 flex justify-center"
+          >
+            <button
+              onClick={() => setShowAll(true)}
+              className="px-6 py-3 border border-slate-700/50 text-slate-400 rounded-full text-sm tracking-wider hover:border-primary-400/40 hover:text-white transition-all duration-300"
+            >
+              SHOW {hiddenCount} MORE POSITIONS
+            </button>
+          </motion.div>
+        )}
+
+        {showAll && hiddenCount > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-8 flex justify-center"
+          >
+            <button
+              onClick={() => setShowAll(false)}
+              className="px-6 py-3 border border-slate-700/50 text-slate-400 rounded-full text-sm tracking-wider hover:border-primary-400/40 hover:text-white transition-all duration-300"
+            >
+              SHOW LESS
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

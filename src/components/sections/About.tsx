@@ -1,7 +1,10 @@
+import { Suspense, lazy } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MapPin, Briefcase, GraduationCap, Globe } from 'lucide-react';
+import { MapPin, Briefcase, GraduationCap, Globe, FileText } from 'lucide-react';
 import { resumeData } from '../../data/resume';
+
+const AboutScene = lazy(() => import('../three/AboutScene'));
 
 function StatCounter({ value, label, index }: { value: string; label: string; index: number }) {
   const ref = useRef(null);
@@ -71,6 +74,12 @@ export default function About() {
               Strong track record of driving user acquisition, building ambassador programs,
               managing cross-functional teams, and delivering measurable revenue outcomes.
             </p>
+
+            <Suspense fallback={null}>
+              <div className="mt-10 h-56 sm:h-64 rounded-2xl overflow-hidden border border-white/5 hidden md:block">
+                <AboutScene />
+              </div>
+            </Suspense>
           </motion.div>
 
           <motion.div
@@ -99,18 +108,23 @@ export default function About() {
               </motion.div>
             ))}
 
-            <motion.a
-              href="#contact"
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.9 }}
-              className="inline-flex items-center gap-2 mt-6 text-sm text-primary-400 hover:text-primary-300 transition-colors tracking-wider"
+              className="flex items-center gap-4 mt-6"
             >
-              RESUME
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-              </svg>
-            </motion.a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-sm text-primary-400 hover:text-primary-300 transition-colors tracking-wider"
+              >
+                <FileText size={14} />
+                DOWNLOAD RESUME
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </div>

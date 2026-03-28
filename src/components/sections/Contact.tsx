@@ -1,19 +1,37 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Send, Mail, MapPin, ArrowUpRight } from 'lucide-react';
+import { Send, Mail, MapPin, ArrowUpRight, Loader as Loader2, CircleCheck as CheckCircle2, CircleAlert as AlertCircle } from 'lucide-react';
 import { resumeData } from '../../data/resume';
+import { LinkedInIcon } from '../icons';
+import { supabase } from '../../lib/supabase';
+
+type FormStatus = 'idle' | 'sending' | 'sent' | 'error';
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setStatus('sending');
+
+    const { error } = await supabase.from('contact_messages').insert({
+      name: formState.name,
+      email: formState.email,
+      message: formState.message,
+    });
+
+    if (error) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 4000);
+      return;
+    }
+
+    setStatus('sent');
     setFormState({ name: '', email: '', message: '' });
+    setTimeout(() => setStatus('idle'), 4000);
   };
 
   return (
@@ -78,9 +96,7 @@ export default function Contact() {
               className="glass-card rounded-xl p-5 flex items-center gap-4 transition-all duration-300 group block"
             >
               <div className="w-11 h-11 rounded-lg bg-primary-500/10 flex items-center justify-center group-hover:bg-primary-500/20 transition-colors">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="text-primary-400">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
+                <span className="text-primary-400"><LinkedInIcon /></span>
               </div>
               <div className="flex-1">
                 <p className="text-[11px] text-slate-600 uppercase tracking-[0.15em]">LinkedIn</p>
@@ -108,7 +124,8 @@ export default function Contact() {
                   value={formState.name}
                   onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                   required
-                  className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-200 placeholder-slate-700 focus:outline-none focus:border-primary-500/30 focus:ring-1 focus:ring-primary-500/20 transition-all text-sm"
+                  disabled={status === 'sending'}
+                  className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-200 placeholder-slate-700 focus:outline-none focus:border-primary-500/30 focus:ring-1 focus:ring-primary-500/20 transition-all text-sm disabled:opacity-50"
                   placeholder="Your name"
                 />
               </div>
@@ -122,7 +139,8 @@ export default function Contact() {
                   value={formState.email}
                   onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                   required
-                  className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-200 placeholder-slate-700 focus:outline-none focus:border-primary-500/30 focus:ring-1 focus:ring-primary-500/20 transition-all text-sm"
+                  disabled={status === 'sending'}
+                  className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-200 placeholder-slate-700 focus:outline-none focus:border-primary-500/30 focus:ring-1 focus:ring-primary-500/20 transition-all text-sm disabled:opacity-50"
                   placeholder="your@email.com"
                 />
               </div>
@@ -138,24 +156,48 @@ export default function Contact() {
                 value={formState.message}
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                 required
-                className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-200 placeholder-slate-700 focus:outline-none focus:border-primary-500/30 focus:ring-1 focus:ring-primary-500/20 transition-all resize-none text-sm"
+                disabled={status === 'sending'}
+                className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-200 placeholder-slate-700 focus:outline-none focus:border-primary-500/30 focus:ring-1 focus:ring-primary-500/20 transition-all resize-none text-sm disabled:opacity-50"
                 placeholder="Tell me about your project or opportunity..."
               />
             </div>
 
-            <button
-              type="submit"
-              className="px-8 py-4 bg-white text-dark-950 rounded-full font-medium text-sm tracking-wide hover:bg-primary-400 transition-colors duration-300 flex items-center gap-2"
-            >
-              {submitted ? (
-                'Message Sent!'
-              ) : (
-                <>
-                  SEND MESSAGE
-                  <Send size={14} />
-                </>
+            <div className="flex items-center gap-4">
+              <button
+                type="submit"
+                disabled={status === 'sending' || status === 'sent'}
+                className="px-8 py-4 bg-white text-dark-950 rounded-full font-medium text-sm tracking-wide hover:bg-primary-400 transition-colors duration-300 flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {status === 'sending' && (
+                  <>
+                    <Loader2 size={14} className="animate-spin" />
+                    SENDING...
+                  </>
+                )}
+                {status === 'sent' && (
+                  <>
+                    <CheckCircle2 size={14} />
+                    MESSAGE SENT
+                  </>
+                )}
+                {status === 'error' && (
+                  <>
+                    <AlertCircle size={14} />
+                    FAILED TO SEND
+                  </>
+                )}
+                {status === 'idle' && (
+                  <>
+                    SEND MESSAGE
+                    <Send size={14} />
+                  </>
+                )}
+              </button>
+
+              {status === 'error' && (
+                <span className="text-xs text-red-400">Please try again later.</span>
               )}
-            </button>
+            </div>
           </motion.form>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
 import { resumeData } from '../../data/resume';
 
 function ProjectCard({
@@ -40,17 +39,6 @@ function ProjectCard({
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/50 to-transparent" />
-
-        <motion.div
-          className="absolute top-4 right-4"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={isHovered ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors">
-            <ArrowUpRight size={16} className="text-white" />
-          </div>
-        </motion.div>
       </div>
 
       <div className="p-6">

@@ -1,7 +1,33 @@
+import { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import HeroScene from '../three/HeroScene';
 import { resumeData } from '../../data/resume';
+
+function HeroAvatar() {
+  return (
+    <div className="relative">
+      <div className="w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-full border-2 border-white/10 shadow-2xl shadow-primary-500/10 flex items-center justify-center bg-gradient-to-br from-dark-800 to-dark-900 overflow-hidden">
+        <span className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold gradient-text select-none">
+          NS
+        </span>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-400/5" />
+      </div>
+      <div className="absolute -inset-4 rounded-full border border-primary-400/10 animate-[spin_20s_linear_infinite]" />
+      <div className="absolute -inset-10 rounded-full border border-accent-400/5 animate-[spin_30s_linear_infinite_reverse]" />
+      <div className="absolute -bottom-2 -right-2 w-20 h-20 rounded-full bg-primary-500/20 blur-xl animate-glow" />
+      <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-accent-400/15 blur-xl animate-glow" />
+    </div>
+  );
+}
+
+function SceneLoading() {
+  return (
+    <div className="absolute inset-0 -z-10 bg-dark-950">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-accent-400/5" />
+    </div>
+  );
+}
 
 export default function Hero() {
   return (
@@ -9,10 +35,18 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <HeroScene />
+      <Suspense fallback={<SceneLoading />}>
+        <div className="hidden md:block">
+          <HeroScene />
+        </div>
+      </Suspense>
+
+      <div className="absolute inset-0 md:hidden bg-dark-950">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-accent-400/5" />
+        <div className="absolute inset-0 dot-grid opacity-20" />
+      </div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-dark-950/30 via-transparent to-dark-950 pointer-events-none" />
-
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-dark-950 to-transparent pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 pt-24">
@@ -75,21 +109,9 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="hidden lg:flex justify-center items-center"
+            className="flex justify-center items-center mt-8 lg:mt-0"
           >
-            <div className="relative">
-              <div className="w-80 h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden border-2 border-white/10 shadow-2xl shadow-primary-500/10">
-                <img
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt={resumeData.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -inset-4 rounded-full border border-primary-400/10 animate-[spin_20s_linear_infinite]" />
-              <div className="absolute -inset-10 rounded-full border border-accent-400/5 animate-[spin_30s_linear_infinite_reverse]" />
-              <div className="absolute -bottom-2 -right-2 w-20 h-20 rounded-full bg-primary-500/20 blur-xl animate-glow" />
-              <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-accent-400/15 blur-xl animate-glow" />
-            </div>
+            <HeroAvatar />
           </motion.div>
         </div>
       </div>
