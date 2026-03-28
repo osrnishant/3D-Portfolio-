@@ -1,20 +1,27 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MapPin, Briefcase, GraduationCap } from 'lucide-react';
+import { MapPin, Briefcase, GraduationCap, Globe } from 'lucide-react';
 import { resumeData } from '../../data/resume';
 
-function StatCard({ icon: Icon, label, value }: { icon: typeof MapPin; label: string; value: string }) {
+function StatCounter({ value, label, index }: { value: string; label: string; index: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
+
   return (
-    <div className="flex items-center gap-3 px-5 py-4 rounded-xl bg-dark-700/50 border border-slate-800/50">
-      <div className="w-10 h-10 rounded-lg bg-primary-500/10 flex items-center justify-center">
-        <Icon size={18} className="text-primary-400" />
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.15 }}
+      className="text-center"
+    >
+      <div className="text-3xl sm:text-4xl md:text-5xl font-display font-bold gradient-text mb-2">
+        {value}
       </div>
-      <div>
-        <p className="text-xs text-slate-500 uppercase tracking-wider">{label}</p>
-        <p className="text-sm text-slate-200 font-medium">{value}</p>
+      <div className="text-xs sm:text-sm text-slate-500 tracking-wider uppercase">
+        {label}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -22,64 +29,88 @@ export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  return (
-    <section id="about" className="py-24 sm:py-32 px-6">
-      <div ref={ref} className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <span className="text-primary-400 text-sm font-medium tracking-wider uppercase">About Me</span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-            Get to Know Me
-          </h2>
-        </motion.div>
+  const infoCards = [
+    { icon: MapPin, label: 'Location', value: resumeData.location },
+    { icon: Briefcase, label: 'Current Role', value: 'Web3 Marketing Lead' },
+    { icon: GraduationCap, label: 'Education', value: resumeData.education[0].degree },
+    { icon: Globe, label: 'Languages', value: resumeData.languages.join(', ') },
+  ];
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+  return (
+    <section id="about" className="relative py-32 sm:py-40 px-6 sm:px-8">
+      <div className="absolute inset-0 dot-grid opacity-30" />
+
+      <div ref={ref} className="relative max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-24">
+          {resumeData.stats.map((stat, i) => (
+            <StatCounter key={stat.label} value={stat.value} label={stat.label} index={i} />
+          ))}
+        </div>
+
+        <div className="glow-line mb-24" />
+
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative">
-              <div className="w-full aspect-square max-w-sm mx-auto rounded-2xl overflow-hidden border border-slate-800/50">
-                <img
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 opacity-20 blur-xl" />
-              <div className="absolute -top-4 -left-4 w-32 h-32 rounded-xl bg-gradient-to-br from-accent-500 to-primary-500 opacity-10 blur-xl" />
-            </div>
+            <span className="text-primary-400 text-xs font-medium tracking-[0.2em] uppercase">
+              About Me
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-8 leading-tight">
+              WHAT<br />
+              <span className="gradient-text">I DO</span>
+            </h2>
+
+            <p className="text-slate-400 text-lg leading-relaxed mb-8">
+              {resumeData.about}
+            </p>
+
+            <p className="text-slate-500 leading-relaxed">
+              Strong track record of driving user acquisition, building ambassador programs,
+              managing cross-functional teams, and delivering measurable revenue outcomes.
+            </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="space-y-6"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="space-y-4"
           >
-            <p className="text-slate-300 leading-relaxed text-lg">
-              {resumeData.about}
-            </p>
+            {infoCards.map((card, i) => (
+              <motion.div
+                key={card.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
+                className="glass-card rounded-xl p-5 flex items-center gap-4 transition-all duration-300 group cursor-default"
+              >
+                <div className="w-11 h-11 rounded-lg bg-primary-500/10 flex items-center justify-center group-hover:bg-primary-500/20 transition-colors">
+                  <card.icon size={18} className="text-primary-400" />
+                </div>
+                <div>
+                  <p className="text-[11px] text-slate-600 uppercase tracking-[0.15em]">
+                    {card.label}
+                  </p>
+                  <p className="text-sm text-slate-200 font-medium mt-0.5">{card.value}</p>
+                </div>
+              </motion.div>
+            ))}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <StatCard icon={MapPin} label="Location" value={resumeData.location} />
-              <StatCard icon={Briefcase} label="Role" value={resumeData.title} />
-              <StatCard
-                icon={GraduationCap}
-                label="Education"
-                value={resumeData.education[0].degree}
-              />
-              <StatCard
-                icon={Briefcase}
-                label="Experience"
-                value={`${resumeData.experience.length}+ Roles`}
-              />
-            </div>
+            <motion.a
+              href="#contact"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              className="inline-flex items-center gap-2 mt-6 text-sm text-primary-400 hover:text-primary-300 transition-colors tracking-wider"
+            >
+              RESUME
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </motion.a>
           </motion.div>
         </div>
       </div>

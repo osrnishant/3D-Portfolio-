@@ -1,21 +1,28 @@
-import { Heart } from 'lucide-react';
 import { resumeData } from '../data/resume';
 
 export default function Footer() {
   return (
-    <footer className="py-8 px-6 border-t border-slate-800/50">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <a href="#home" className="font-display text-lg font-bold text-white">
-          NS<span className="text-primary-400">.</span>
+    <footer className="relative py-12 px-6 sm:px-8 border-t border-white/[0.04]">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+        <a
+          href="#home"
+          className="font-display text-xl font-bold text-white tracking-tight"
+        >
+          NS
         </a>
 
-        <p className="text-sm text-slate-500 flex items-center gap-1.5">
-          Built with <Heart size={14} className="text-primary-500" /> by {resumeData.name}
+        <p className="text-xs text-slate-600 tracking-wider">
+          {new Date().getFullYear()} {resumeData.name}. All rights reserved.
         </p>
 
-        <p className="text-xs text-slate-600">
-          &copy; {new Date().getFullYear()} All rights reserved.
-        </p>
+        <a
+          href={resumeData.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs text-slate-600 hover:text-primary-400 transition-colors tracking-wider"
+        >
+          linkedin.com/in/avnishant
+        </a>
       </div>
     </footer>
   );

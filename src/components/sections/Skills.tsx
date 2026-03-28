@@ -2,56 +2,61 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { resumeData } from '../../data/resume';
 
-function SkillBar({ name, level, index }: { name: string; level: number; index: number }) {
+const categoryColors: Record<string, string> = {
+  Marketing: 'from-primary-400 to-primary-600',
+  Channels: 'from-accent-400 to-accent-600',
+  Web3: 'from-warm-400 to-warm-500',
+  Tools: 'from-primary-300 to-accent-400',
+  Other: 'from-slate-400 to-slate-600',
+};
+
+const categoryBorders: Record<string, string> = {
+  Marketing: 'border-primary-500/20 hover:border-primary-500/40',
+  Channels: 'border-accent-500/20 hover:border-accent-500/40',
+  Web3: 'border-warm-400/20 hover:border-warm-400/40',
+  Tools: 'border-primary-400/20 hover:border-primary-400/40',
+  Other: 'border-slate-500/20 hover:border-slate-500/40',
+};
+
+function SkillCategory({
+  category,
+  skills,
+  index,
+}: {
+  category: string;
+  skills: string[];
+  index: number;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="group"
+      transition={{ duration: 0.6, delay: index * 0.12 }}
+      className="glass-card rounded-2xl p-6 sm:p-8"
     >
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium text-slate-200 group-hover:text-primary-400 transition-colors">
-          {name}
-        </span>
-        <span className="text-xs text-slate-500">{level}%</span>
+      <div className="flex items-center gap-3 mb-6">
+        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${categoryColors[category]}`} />
+        <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
+          {category}
+        </h3>
       </div>
-      <div className="h-2 bg-dark-600 rounded-full overflow-hidden">
-        <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-primary-600 to-primary-400"
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${level}%` } : { width: 0 }}
-          transition={{ duration: 1, delay: index * 0.08 + 0.3, ease: 'easeOut' }}
-        />
+      <div className="flex flex-wrap gap-2.5">
+        {skills.map((skill, i) => (
+          <motion.span
+            key={skill}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.3, delay: index * 0.1 + i * 0.04 }}
+            className={`px-4 py-2 text-xs rounded-full border ${categoryBorders[category]} text-slate-300 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 cursor-default`}
+          >
+            {skill}
+          </motion.span>
+        ))}
       </div>
-    </motion.div>
-  );
-}
-
-function SkillOrb({ name, level, index }: { name: string; level: number; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const size = 60 + (level / 100) * 40;
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.06, type: 'spring', stiffness: 200 }}
-      className="flex flex-col items-center gap-2"
-    >
-      <div
-        className="rounded-full flex items-center justify-center border border-primary-500/20 bg-gradient-to-br from-primary-500/10 to-accent-500/5 hover:from-primary-500/20 hover:to-accent-500/10 transition-all duration-300 hover:scale-110 cursor-default"
-        style={{ width: size, height: size }}
-      >
-        <span className="text-xs font-bold text-primary-300">{level}%</span>
-      </div>
-      <span className="text-xs text-slate-400 text-center">{name}</span>
     </motion.div>
   );
 }
@@ -60,45 +65,33 @@ export default function Skills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const categories = [...new Set(resumeData.skills.map((s) => s.category))];
+  const categories = Object.entries(resumeData.skills);
 
   return (
-    <section id="skills" className="py-24 sm:py-32 px-6 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900" />
-
-      <div ref={ref} className="relative max-w-6xl mx-auto">
+    <section id="skills" className="relative py-24 sm:py-32 px-6 sm:px-8">
+      <div ref={ref} className="relative max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <span className="text-primary-400 text-sm font-medium tracking-wider uppercase">
-            Skills & Expertise
+          <span className="text-primary-400 text-xs font-medium tracking-[0.2em] uppercase">
+            Expertise
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-            Technical Proficiency
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4">
+            CORE <span className="gradient-text">SKILLS</span>
           </h2>
         </motion.div>
 
-        <div className="hidden md:flex flex-wrap justify-center gap-6 mb-16">
-          {resumeData.skills.map((skill, i) => (
-            <SkillOrb key={skill.name} name={skill.name} level={skill.level} index={i} />
-          ))}
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {categories.map((cat) => (
-            <div key={cat} className="p-6 rounded-2xl bg-dark-700/30 border border-slate-800/50">
-              <h3 className="text-lg font-semibold text-white mb-6 font-display">{cat}</h3>
-              <div className="space-y-5">
-                {resumeData.skills
-                  .filter((s) => s.category === cat)
-                  .map((skill, i) => (
-                    <SkillBar key={skill.name} name={skill.name} level={skill.level} index={i} />
-                  ))}
-              </div>
-            </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {categories.map(([category, skills], i) => (
+            <SkillCategory
+              key={category}
+              category={category}
+              skills={skills}
+              index={i}
+            />
           ))}
         </div>
       </div>

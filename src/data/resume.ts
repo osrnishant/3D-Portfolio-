@@ -1,77 +1,223 @@
 export const resumeData = {
-  name: 'Nishant Sharmaa',
-  title: 'Software Developer',
-  tagline: 'Building digital experiences that make a difference',
+  name: 'Nishant Sharma',
+  title: 'Growth Marketing Manager | Web3 Strategist | Community Builder',
+  tagline:
+    'I build marketing engines from scratch — communities, capital raises, multi-channel campaigns across Web3, DeFi, and consumer tech.',
   about:
-    'Passionate software developer with expertise in building modern web applications. I focus on creating clean, efficient, and user-friendly solutions that solve real-world problems.',
-  email: 'nishant.sharmaa@email.com',
-  location: 'India',
-  skills: [
-    { name: 'React', level: 90, category: 'Frontend' },
-    { name: 'TypeScript', level: 85, category: 'Frontend' },
-    { name: 'JavaScript', level: 92, category: 'Frontend' },
-    { name: 'Node.js', level: 80, category: 'Backend' },
-    { name: 'Python', level: 78, category: 'Backend' },
-    { name: 'HTML/CSS', level: 95, category: 'Frontend' },
-    { name: 'Tailwind CSS', level: 88, category: 'Frontend' },
-    { name: 'Git', level: 85, category: 'Tools' },
-    { name: 'SQL', level: 75, category: 'Backend' },
-    { name: 'REST APIs', level: 82, category: 'Backend' },
+    'Marketing professional with 14 years of experience across growth marketing, community building, brand strategy, and business development. Spent the last 4 years building marketing programs in Web3 from scratch, including community growth to 1 million members, capital raises of $1.8M, and multi-channel campaigns across gaming, DeFi, and consumer tech.',
+  email: 'nishant.sharma@email.com',
+  location: 'Ghaziabad, India',
+  linkedin: 'https://linkedin.com/in/avnishant',
+  availability: 'Open to remote and relocation',
+
+  stats: [
+    { label: 'Years Experience', value: '14+' },
+    { label: 'Community Members Built', value: '1M+' },
+    { label: 'Capital Raised', value: '$1.8M' },
+    { label: 'NFTs Sold', value: '23 ETH' },
   ],
+
+  achievements: [
+    {
+      metric: '240K',
+      description: 'Grew WazirX community — largest crypto exchange community in India',
+    },
+    {
+      metric: '$1.8M',
+      description: 'Raised in Triskel Wallet RWA tokenization round as founding marketing member',
+    },
+    {
+      metric: '1M',
+      description: 'Built Shardeum community members, ranked Top 20 contributor',
+    },
+    {
+      metric: '20K',
+      description: 'Whitelisted NFT buyers created, sold 23 ETH of Alpha NFTs for Born To Die Game',
+    },
+    {
+      metric: '$155K',
+      description: 'Raised through IDO campaign for Boudicea.io Web3 gaming project',
+    },
+    {
+      metric: '1,000',
+      description: 'Crypto debit cards sold in 6 months at Triskel Wallet',
+    },
+  ],
+
+  skills: {
+    Marketing: ['GTM Strategy', 'Growth Marketing', 'Community Building', 'Brand Positioning', 'Content Marketing'],
+    Channels: ['Twitter/X', 'LinkedIn', 'Telegram', 'Discord', 'Instagram', 'Medium', 'YouTube', 'Reddit'],
+    Web3: ['IDO/ICO Campaigns', 'NFT Launches', 'DeFi Incentives', 'Tokenomics', 'Wallet Integration'],
+    Tools: ['Trello', 'ClickUp', 'Notion', 'Canva', 'Google Analytics', 'Mailchimp', 'HubSpot'],
+    Other: ['KOL Management', 'Ambassador Programs', 'Investor Relations', 'Team Management', 'SOP Creation'],
+  },
+
   experience: [
     {
-      role: 'Software Developer',
-      company: 'Tech Company',
-      duration: '2022 - Present',
-      description:
-        'Developing and maintaining web applications using modern frameworks and best practices. Collaborating with cross-functional teams to deliver high-quality software solutions.',
+      role: 'Web3 Marketing Lead',
+      company: 'Code Brew Labs (BlockTech Brew)',
+      duration: 'Oct 2025 - Present',
+      type: 'Full-time | Remote',
       highlights: [
-        'Built responsive web applications using React and TypeScript',
-        'Implemented RESTful APIs and microservices',
-        'Improved application performance by 40%',
+        'Onboard Web3 projects as marketing clients and build their data rooms and investor narratives',
+        'Design and execute GTM strategy, social media, and community infrastructure for client projects',
+        'Coordinate VC, family office, ICO, and crowdfunding outreach in parallel with marketing execution',
+        'Manage team members on SOP-driven workflows across multiple concurrent client engagements',
       ],
     },
     {
-      role: 'Junior Developer',
-      company: 'Startup Inc',
-      duration: '2020 - 2022',
-      description:
-        'Contributed to full-stack development projects, writing clean and maintainable code while learning industry best practices.',
+      role: 'Founding Marketing Member',
+      company: 'Triskel Wallet',
+      duration: 'Jan 2025 - Jul 2025',
+      type: 'Full-time | Remote',
       highlights: [
-        'Developed features for customer-facing applications',
-        'Participated in code reviews and agile ceremonies',
-        'Automated testing processes reducing bugs by 30%',
+        'Joined as the first marketing hire with no existing team, process, or infrastructure',
+        'Built data room, GTM strategy, and competitive positioning against MetaMask, Nexo, and Cypher',
+        'Drove 1,000 crypto debit card sales in the first 6 months of product operation',
+        "Supported a $1.8M raise in the company's first RWA tokenization product",
+      ],
+    },
+    {
+      role: 'Founder',
+      company: 'ClarityGLP',
+      duration: 'Jan 2025 - Present',
+      type: 'India',
+      highlights: [
+        'Founded a community platform for people using GLP-1 based weight loss therapies',
+        'Built product positioning, content strategy, and community infrastructure from scratch',
+      ],
+    },
+    {
+      role: 'Marketing Consultant',
+      company: 'Stealth Startup (Web3)',
+      duration: 'Jan 2025 - Jul 2025',
+      type: 'Full-time | Remote',
+      highlights: [
+        'Led GTM and brand strategy for a Web3 financial product in stealth mode',
+        'Scaled community to 10,000 members and drove six-figure revenue through partner-led funnels',
+        'Structured and managed KOL campaigns and oversaw all content and performance marketing',
+      ],
+    },
+    {
+      role: 'Growth Hacker',
+      company: 'Antier Solutions',
+      duration: 'Oct 2023 - Jan 2025',
+      type: 'Full-time | On-site | Punjab, India',
+      highlights: [
+        'Onboarded Web3 marketing clients and built custom GTM strategies for each project',
+        'Led IDO campaign for Boudicea.io Web3 gaming project, raising $155K',
+        'Generated $100K in revenue across 3 quarters through acquisition and retention campaigns',
+        'Increased community engagement by 50% and staking participation by 20% through A/B testing',
+      ],
+    },
+    {
+      role: 'Founder',
+      company: 'AI2Web3',
+      duration: 'Jun 2023 - Jan 2025',
+      type: 'Full-time | Remote',
+      highlights: [
+        'Built a research and education community for marketers exploring AI-native Web3 projects',
+        'Onboarded 200 researchers and builders, organized 5 virtual conferences reaching 10,000 attendees',
+        'Published weekly newsletter achieving 45% open rate, brokered 3 VC and 4 accelerator partnerships',
+      ],
+    },
+    {
+      role: 'Core Contributor',
+      company: 'Shardeum',
+      duration: 'Feb 2022 - Jan 2025',
+      type: 'Part-time | Remote',
+      highlights: [
+        'Ranked Top 20 contributor in a community that reached 1 million members',
+        'Owned offline event execution, delivered keynote at Delhi event with 300 attendees',
+        'Onboarded 30 projects and 5,000 developers to the Shardeum testnet',
+      ],
+    },
+    {
+      role: 'Community Manager',
+      company: 'Born To Die Game',
+      duration: 'Dec 2022 - Sep 2023',
+      type: 'Full-time | Remote',
+      highlights: [
+        'Built investor NFT community for an AAA Web3 shooter game from zero',
+        'Created 20,000 whitelisted Alpha NFT buyers and sold 23 ETH in NFTs',
+        'Grew pre-launch community to 50,000 gamers, managed 8-person remote moderation team',
+      ],
+    },
+    {
+      role: 'Community Management Specialist',
+      company: 'WazirX (Binance India)',
+      duration: 'Apr 2022 - Nov 2022',
+      type: 'Full-time | Remote',
+      highlights: [
+        'Grew Telegram from 117K to 240K, making WazirX the largest crypto exchange community in India',
+        'Built WazirX Warriors ambassador program, trained 30 moderators, managed 1M messages per quarter',
+      ],
+    },
+    {
+      role: 'Sales & Business Development',
+      company: 'Various Companies',
+      duration: 'Jun 2011 - Jul 2020',
+      type: 'Full-time | India',
+      highlights: [
+        'Delivered INR 2.5 to 5 million in annual insurance premium sales for 5 consecutive years',
+        'Won second place in a national sales reality show, prize of INR 500,000',
+        'Served as Area Sales Manager at SUKAM Inverters leading a regional sales team',
       ],
     },
   ],
+
   education: [
     {
-      degree: "Bachelor's in Computer Science",
-      institution: 'University',
-      year: '2020',
+      degree: 'Bachelor of Business Administration',
+      institution: 'Nexxbase Marketing Pvt. Ltd.',
+      year: '2011',
     },
   ],
+
+  languages: ['English', 'Hindi'],
+
   projects: [
     {
-      title: 'E-Commerce Platform',
+      title: 'Triskel Wallet Launch',
       description:
-        'Full-stack e-commerce solution with payment integration, inventory management, and real-time analytics dashboard.',
-      tech: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600',
+        'Built the entire marketing infrastructure from scratch as the first marketing hire. Drove 1,000 crypto debit card sales and supported a $1.8M RWA tokenization raise.',
+      tags: ['Web3', 'GTM Strategy', 'RWA', 'Debit Cards'],
+      image: 'https://images.pexels.com/photos/8370752/pexels-photo-8370752.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
     {
-      title: 'Task Management App',
+      title: 'Born To Die NFT Campaign',
       description:
-        'Collaborative project management tool with real-time updates, drag-and-drop interface, and team communication features.',
-      tech: ['TypeScript', 'React', 'Firebase', 'Tailwind'],
-      image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600',
+        'Created 20,000 whitelisted Alpha NFT buyers and sold 23 ETH. Grew pre-launch community to 50,000 gamers with an 8-person remote moderation team.',
+      tags: ['NFT', 'Gaming', 'Community', 'Web3'],
+      image: 'https://images.pexels.com/photos/7887800/pexels-photo-7887800.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
     {
-      title: 'AI Chat Application',
+      title: 'WazirX Community Growth',
       description:
-        'Intelligent chatbot application powered by machine learning with natural language processing capabilities.',
-      tech: ['Python', 'TensorFlow', 'React', 'FastAPI'],
+        'Grew WazirX Telegram from 117K to 240K members, making it the largest crypto exchange community in India. Built the Warriors ambassador program.',
+      tags: ['Community', 'Telegram', 'Ambassador Program'],
+      image: 'https://images.pexels.com/photos/6771178/pexels-photo-6771178.jpeg?auto=compress&cs=tinysrgb&w=600',
+    },
+    {
+      title: 'Boudicea.io IDO Campaign',
+      description:
+        'Led the IDO campaign for this Web3 gaming project, successfully raising $155K. Designed multi-channel acquisition and community engagement strategy.',
+      tags: ['IDO', 'Gaming', 'Fundraising', 'Web3'],
+      image: 'https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=600',
+    },
+    {
+      title: 'AI2Web3 Research Community',
+      description:
+        'Founded a research and education community for marketers exploring AI-native Web3 projects. 200 researchers, 5 conferences, 45% newsletter open rate.',
+      tags: ['AI', 'Web3', 'Newsletter', 'Research'],
       image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=600',
+    },
+    {
+      title: 'Shardeum Ecosystem Contribution',
+      description:
+        'Top 20 contributor in a community of 1 million. Onboarded 30 projects and 5,000 developers to the Shardeum testnet. Delivered keynotes at major events.',
+      tags: ['L1 Blockchain', 'Developer Relations', 'Events'],
+      image: 'https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
   ],
 };
