@@ -17,6 +17,12 @@ export default function Contact() {
     e.preventDefault();
     setStatus('sending');
 
+    if (!supabase) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 4000);
+      return;
+    }
+
     const { error } = await supabase.from('contact_messages').insert({
       name: formState.name,
       email: formState.email,
