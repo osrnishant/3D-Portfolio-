@@ -9,6 +9,8 @@ export const resumeData = {
   location: 'Ghaziabad, India',
   linkedin: 'https://linkedin.com/in/avnishant',
   availability: 'Open to remote and relocation',
+  profileImage: '/1768716711733_(1).jpeg',
+  resumePdf: '/Nishant_Sharmaa_Resume.docx_(1).pdf',
 
   stats: [
     { label: 'Years Experience', value: '14+' },

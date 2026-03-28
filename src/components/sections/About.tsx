@@ -115,7 +115,8 @@ export default function About() {
               className="flex items-center gap-4 mt-6"
             >
               <a
-                href="#contact"
+                href={resumeData.resumePdf}
+                download="Nishant_Sharma_Resume.pdf"
                 className="inline-flex items-center gap-2 text-sm text-primary-400 hover:text-primary-300 transition-colors tracking-wider"
               >
                 <FileText size={14} />

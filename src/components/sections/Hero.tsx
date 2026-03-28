@@ -8,7 +8,19 @@ function HeroAvatar() {
   return (
     <div className="relative">
       <div className="w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-full border-2 border-white/10 shadow-2xl shadow-primary-500/10 flex items-center justify-center bg-gradient-to-br from-dark-800 to-dark-900 overflow-hidden">
-        <span className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold gradient-text select-none">
+        <img
+          src={resumeData.profileImage}
+          alt={resumeData.name}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+            const fallback = e.currentTarget.nextElementSibling;
+            if (fallback) {
+              (fallback as HTMLElement).style.display = 'flex';
+            }
+          }}
+        />
+        <span className="hidden font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold gradient-text select-none absolute inset-0 items-center justify-center">
           NS
         </span>
         <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-400/5" />

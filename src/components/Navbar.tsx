@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'ABOUT', href: '#about' },
   { label: 'WORK', href: '#work' },
   { label: 'CONTACT', href: '#contact' },
+  { label: 'RESUME', href: resumeData.resumePdf, download: true },
 ];
 
 export default function Navbar() {
@@ -53,6 +54,7 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
+                  {...(link.download ? { download: 'Nishant_Sharma_Resume.pdf' } : {})}
                   className="text-sm text-slate-400 hover:text-white transition-colors duration-300 tracking-wider font-medium"
                 >
                   {link.label}
@@ -84,6 +86,7 @@ export default function Navbar() {
                 <motion.a
                   key={link.href}
                   href={link.href}
+                  {...(link.download ? { download: 'Nishant_Sharma_Resume.pdf' } : {})}
                   onClick={() => setMobileOpen(false)}
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
