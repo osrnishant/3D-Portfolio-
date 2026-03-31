@@ -29,14 +29,14 @@ export default function Navbar() {
         transition={{ duration: 0.8, delay: 0.3 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-dark-950/80 backdrop-blur-2xl border-b border-white/[0.04]'
+            ? 'bg-white/80 backdrop-blur-2xl border-b border-surface-200/60 shadow-sm'
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
           <a
             href="#home"
-            className="font-display text-xl font-bold text-white tracking-tight"
+            className="font-display text-xl font-bold text-surface-900 tracking-tight"
           >
             NS
           </a>
@@ -46,7 +46,7 @@ export default function Navbar() {
               href={resumeData.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-slate-500 hover:text-primary-400 transition-colors tracking-wider mr-12"
+              className="text-xs text-surface-400 hover:text-primary-500 transition-colors tracking-wider mr-12"
             >
               linkedin.com/in/avnishant
             </a>
@@ -61,7 +61,7 @@ export default function Navbar() {
                     rel: 'noopener noreferrer',
                     'aria-label': 'Download resume PDF'
                   } : {})}
-                  className="text-sm text-slate-400 hover:text-white transition-colors duration-300 tracking-wider font-medium"
+                  className="text-sm text-surface-500 hover:text-surface-900 transition-colors duration-300 tracking-wider font-medium"
                 >
                   {link.label}
                 </a>
@@ -71,7 +71,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden w-10 h-10 flex items-center justify-center text-slate-300"
+            className="md:hidden w-10 h-10 flex items-center justify-center text-surface-700"
           >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -85,7 +85,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-dark-950/98 backdrop-blur-2xl pt-24 px-8 md:hidden"
+            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl pt-24 px-8 md:hidden"
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link, i) => (
@@ -102,7 +102,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="text-3xl font-display font-bold text-white py-3 border-b border-white/5"
+                  className="text-3xl font-display font-bold text-surface-900 py-3 border-b border-surface-200"
                 >
                   {link.label}
                 </motion.a>
@@ -114,7 +114,7 @@ export default function Navbar() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-sm text-primary-400 mt-4"
+                className="text-sm text-primary-500 mt-4"
               >
                 linkedin.com/in/avnishant
               </motion.a>

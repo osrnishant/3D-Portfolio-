@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import SocialSidebar from './components/SocialSidebar';
 import Hero from './components/sections/Hero';
@@ -9,21 +10,28 @@ import Projects from './components/sections/Projects';
 import Contact from './components/sections/Contact';
 import Footer from './components/Footer';
 
+const GlobalScene = lazy(() => import('./components/three/GlobalScene'));
+
 export default function App() {
   return (
     <>
-      <Navbar />
-      <SocialSidebar />
-      <main>
-        <Hero />
-        <About />
-        <Achievements />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <GlobalScene />
+      </Suspense>
+      <div className="relative z-10">
+        <Navbar />
+        <SocialSidebar />
+        <main>
+          <Hero />
+          <About />
+          <Achievements />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

@@ -1,10 +1,7 @@
-import { Suspense, lazy } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { MapPin, Briefcase, GraduationCap, Globe, FileText } from 'lucide-react';
 import { resumeData } from '../../data/resume';
-
-const AboutScene = lazy(() => import('../three/AboutScene'));
 
 function StatCounter({ value, label, index }: { value: string; label: string; index: number }) {
   const ref = useRef(null);
@@ -21,7 +18,7 @@ function StatCounter({ value, label, index }: { value: string; label: string; in
       <div className="text-3xl sm:text-4xl md:text-5xl font-display font-bold gradient-text mb-2">
         {value}
       </div>
-      <div className="text-xs sm:text-sm text-slate-500 tracking-wider uppercase">
+      <div className="text-xs sm:text-sm text-surface-500 tracking-wider uppercase">
         {label}
       </div>
     </motion.div>
@@ -40,8 +37,9 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative py-32 sm:py-40 px-6 sm:px-8">
-      <div className="absolute inset-0 dot-grid opacity-30" />
+    <section id="about" className="relative py-32 sm:py-40 px-6 sm:px-8 lg:px-12">
+      <div className="absolute inset-0 dot-grid opacity-40" />
+      <div className="absolute inset-0 bg-gradient-to-b from-surface-100/80 via-surface-50/50 to-surface-50/80 pointer-events-none" />
 
       <div ref={ref} className="relative max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-24">
@@ -58,28 +56,22 @@ export default function About() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="text-primary-400 text-xs font-medium tracking-[0.2em] uppercase">
+            <span className="text-primary-500 text-xs font-medium tracking-[0.2em] uppercase">
               About Me
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-8 leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-surface-900 mt-4 mb-8 leading-tight">
               WHAT<br />
               <span className="gradient-text">I DO</span>
             </h2>
 
-            <p className="text-slate-400 text-lg leading-relaxed mb-8">
+            <p className="text-surface-600 text-lg leading-relaxed mb-8">
               {resumeData.about}
             </p>
 
-            <p className="text-slate-500 leading-relaxed">
+            <p className="text-surface-500 leading-relaxed">
               Strong track record of driving user acquisition, building ambassador programs,
               managing cross-functional teams, and delivering measurable revenue outcomes.
             </p>
-
-            <Suspense fallback={null}>
-              <div className="mt-10 h-56 sm:h-64 rounded-2xl overflow-hidden border border-white/5 hidden md:block">
-                <AboutScene />
-              </div>
-            </Suspense>
           </motion.div>
 
           <motion.div
@@ -96,14 +88,14 @@ export default function About() {
                 transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
                 className="glass-card rounded-xl p-5 flex items-center gap-4 transition-all duration-300 group cursor-default"
               >
-                <div className="w-11 h-11 rounded-lg bg-primary-500/10 flex items-center justify-center group-hover:bg-primary-500/20 transition-colors">
-                  <card.icon size={18} className="text-primary-400" />
+                <div className="w-11 h-11 rounded-lg bg-primary-500/10 flex items-center justify-center group-hover:bg-primary-500/15 transition-colors">
+                  <card.icon size={18} className="text-primary-500" />
                 </div>
                 <div>
-                  <p className="text-[11px] text-slate-600 uppercase tracking-[0.15em]">
+                  <p className="text-[11px] text-surface-400 uppercase tracking-[0.15em]">
                     {card.label}
                   </p>
-                  <p className="text-sm text-slate-200 font-medium mt-0.5">{card.value}</p>
+                  <p className="text-sm text-surface-800 font-medium mt-0.5">{card.value}</p>
                 </div>
               </motion.div>
             ))}
@@ -120,7 +112,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Download Nishant Sharma's resume as PDF"
-                className="inline-flex items-center gap-2 text-sm text-primary-400 hover:text-primary-300 transition-colors tracking-wider"
+                className="inline-flex items-center gap-2 text-sm text-primary-500 hover:text-primary-600 transition-colors tracking-wider font-medium"
               >
                 <FileText size={14} />
                 DOWNLOAD RESUME

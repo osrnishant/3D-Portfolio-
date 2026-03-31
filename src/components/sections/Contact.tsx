@@ -41,9 +41,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-32 sm:py-40 px-6 sm:px-8">
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-950 via-dark-900 to-dark-950" />
-      <div className="absolute inset-0 dot-grid opacity-20" />
+    <section id="contact" className="relative py-32 sm:py-40 px-6 sm:px-8 lg:px-12 section-dark">
+      <div className="absolute inset-0 dot-grid opacity-15" />
 
       <div ref={ref} className="relative max-w-6xl mx-auto">
         <motion.div
@@ -58,7 +57,7 @@ export default function Contact() {
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4">
             GET IN <span className="gradient-text">TOUCH</span>
           </h2>
-          <p className="text-slate-500 mt-4 max-w-xl mx-auto">
+          <p className="text-surface-400 mt-4 max-w-xl mx-auto">
             I'm always open to new opportunities and interesting projects.
             Whether you have a question or just want to say hi, feel free to reach out.
           </p>
@@ -79,10 +78,10 @@ export default function Contact() {
                 <Mail size={18} className="text-primary-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[11px] text-slate-600 uppercase tracking-[0.15em]">Email</p>
-                <p className="text-sm text-slate-200 truncate">{resumeData.email}</p>
+                <p className="text-[11px] text-surface-400 uppercase tracking-[0.15em]">Email</p>
+                <p className="text-sm text-surface-200 truncate">{resumeData.email}</p>
               </div>
-              <ArrowUpRight size={16} className="text-slate-700 group-hover:text-primary-400 transition-colors shrink-0" />
+              <ArrowUpRight size={16} className="text-surface-500 group-hover:text-primary-400 transition-colors shrink-0" />
             </a>
 
             <div className="glass-card rounded-xl p-5 flex items-center gap-4">
@@ -90,8 +89,8 @@ export default function Contact() {
                 <MapPin size={18} className="text-accent-400" />
               </div>
               <div>
-                <p className="text-[11px] text-slate-600 uppercase tracking-[0.15em]">Location</p>
-                <p className="text-sm text-slate-200">{resumeData.location}</p>
+                <p className="text-[11px] text-surface-400 uppercase tracking-[0.15em]">Location</p>
+                <p className="text-sm text-surface-200">{resumeData.location}</p>
               </div>
             </div>
 
@@ -105,10 +104,10 @@ export default function Contact() {
                 <span className="text-primary-400"><LinkedInIcon /></span>
               </div>
               <div className="flex-1">
-                <p className="text-[11px] text-slate-600 uppercase tracking-[0.15em]">LinkedIn</p>
-                <p className="text-sm text-slate-200">linkedin.com/in/avnishant</p>
+                <p className="text-[11px] text-surface-400 uppercase tracking-[0.15em]">LinkedIn</p>
+                <p className="text-sm text-surface-200">linkedin.com/in/avnishant</p>
               </div>
-              <ArrowUpRight size={16} className="text-slate-700 group-hover:text-primary-400 transition-colors shrink-0" />
+              <ArrowUpRight size={16} className="text-surface-500 group-hover:text-primary-400 transition-colors shrink-0" />
             </a>
           </motion.div>
 
@@ -121,7 +120,7 @@ export default function Contact() {
           >
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label htmlFor="name" className="block text-[11px] text-slate-600 uppercase tracking-[0.15em] mb-2">
+                <label htmlFor="name" className="block text-[11px] text-surface-400 uppercase tracking-[0.15em] mb-2">
                   Name
                 </label>
                 <input
@@ -131,12 +130,12 @@ export default function Contact() {
                   onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                   required
                   disabled={status === 'sending'}
-                  className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-200 placeholder-slate-700 focus:outline-none focus:border-primary-500/30 focus:ring-1 focus:ring-primary-500/20 transition-all text-sm disabled:opacity-50"
+                  className="w-full px-4 py-3.5 rounded-xl bg-white/[0.05] border border-white/[0.08] text-surface-200 placeholder-surface-500 focus:outline-none focus:border-primary-500/40 focus:ring-1 focus:ring-primary-500/20 transition-all text-sm disabled:opacity-50"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-[11px] text-slate-600 uppercase tracking-[0.15em] mb-2">
+                <label htmlFor="email" className="block text-[11px] text-surface-400 uppercase tracking-[0.15em] mb-2">
                   Email
                 </label>
                 <input
@@ -146,14 +145,14 @@ export default function Contact() {
                   onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                   required
                   disabled={status === 'sending'}
-                  className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-200 placeholder-slate-700 focus:outline-none focus:border-primary-500/30 focus:ring-1 focus:ring-primary-500/20 transition-all text-sm disabled:opacity-50"
+                  className="w-full px-4 py-3.5 rounded-xl bg-white/[0.05] border border-white/[0.08] text-surface-200 placeholder-surface-500 focus:outline-none focus:border-primary-500/40 focus:ring-1 focus:ring-primary-500/20 transition-all text-sm disabled:opacity-50"
                   placeholder="your@email.com"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-[11px] text-slate-600 uppercase tracking-[0.15em] mb-2">
+              <label htmlFor="message" className="block text-[11px] text-surface-400 uppercase tracking-[0.15em] mb-2">
                 Message
               </label>
               <textarea
@@ -163,7 +162,7 @@ export default function Contact() {
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                 required
                 disabled={status === 'sending'}
-                className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-200 placeholder-slate-700 focus:outline-none focus:border-primary-500/30 focus:ring-1 focus:ring-primary-500/20 transition-all resize-none text-sm disabled:opacity-50"
+                className="w-full px-4 py-3.5 rounded-xl bg-white/[0.05] border border-white/[0.08] text-surface-200 placeholder-surface-500 focus:outline-none focus:border-primary-500/40 focus:ring-1 focus:ring-primary-500/20 transition-all resize-none text-sm disabled:opacity-50"
                 placeholder="Tell me about your project or opportunity..."
               />
             </div>
@@ -172,29 +171,29 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === 'sending' || status === 'sent'}
-                className="px-8 py-4 bg-white text-dark-950 rounded-full font-medium text-sm tracking-wide hover:bg-primary-400 transition-colors duration-300 flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center whitespace-nowrap min-w-[180px] px-8 py-4 bg-white text-surface-900 rounded-xl font-medium text-sm tracking-wide hover:bg-primary-400 hover:text-white transition-all duration-300 gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {status === 'sending' && (
                   <>
                     <Loader2 size={14} className="animate-spin" />
-                    SENDING...
+                    Sending...
                   </>
                 )}
                 {status === 'sent' && (
                   <>
                     <CheckCircle2 size={14} />
-                    MESSAGE SENT
+                    Message Sent
                   </>
                 )}
                 {status === 'error' && (
                   <>
                     <AlertCircle size={14} />
-                    FAILED TO SEND
+                    Failed to Send
                   </>
                 )}
                 {status === 'idle' && (
                   <>
-                    SEND MESSAGE
+                    Send Message
                     <Send size={14} />
                   </>
                 )}

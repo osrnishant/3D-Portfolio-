@@ -34,13 +34,13 @@ export default function SocialSidebar() {
           href={s.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-500 hover:text-primary-400 hover:bg-white/5 transition-all duration-300"
+          className="w-10 h-10 rounded-lg flex items-center justify-center text-surface-400 hover:text-primary-500 hover:bg-surface-100 transition-all duration-300"
           title={s.label}
         >
           {s.icon}
         </a>
       ))}
-      <div className="w-px h-16 bg-gradient-to-b from-slate-700 to-transparent mx-auto mt-2" />
+      <div className="w-px h-16 bg-gradient-to-b from-surface-300 to-transparent mx-auto mt-2" />
     </motion.div>
   );
 }

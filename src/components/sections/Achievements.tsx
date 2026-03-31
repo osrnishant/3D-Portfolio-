@@ -20,12 +20,12 @@ function AchievementCard({
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="glass-card rounded-2xl p-6 sm:p-8 transition-all duration-500 group hover:scale-[1.02]"
+      className="section-dark glass-card rounded-2xl p-6 sm:p-8 transition-all duration-500 group hover:scale-[1.02]"
     >
       <div className="text-3xl sm:text-4xl font-display font-bold gradient-text mb-3">
         {metric}
       </div>
-      <p className="text-sm text-slate-400 leading-relaxed">{description}</p>
+      <p className="text-sm text-surface-300 leading-relaxed">{description}</p>
     </motion.div>
   );
 }
@@ -35,8 +35,8 @@ export default function Achievements() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="relative py-24 sm:py-32 px-6 sm:px-8">
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-950 via-dark-900 to-dark-950" />
+    <section className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 section-dark">
+      <div className="absolute inset-0 dot-grid opacity-20" />
 
       <div ref={ref} className="relative max-w-7xl mx-auto">
         <motion.div

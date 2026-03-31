@@ -32,7 +32,7 @@ function ExperienceCard({
       transition={{ duration: 0.6, delay: Math.min(index, 4) * 0.08 }}
       className="relative pl-8 sm:pl-10 pb-10 last:pb-0 group"
     >
-      <div className="absolute left-0 top-2 w-3 h-3 rounded-full border-2 border-primary-400 bg-dark-950 z-10 group-hover:bg-primary-400 transition-colors duration-300" />
+      <div className="absolute left-0 top-2 w-3 h-3 rounded-full border-2 border-primary-500 bg-surface-50 z-10 group-hover:bg-primary-500 transition-colors duration-300" />
       <div className="absolute left-[5px] top-5 bottom-0 w-px bg-gradient-to-b from-primary-500/30 to-transparent" />
 
       <div
@@ -42,14 +42,14 @@ function ExperienceCard({
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-1">
-              <h3 className="text-base sm:text-lg font-semibold text-white font-display">
+              <h3 className="text-base sm:text-lg font-semibold text-surface-900 font-display">
                 {role}
               </h3>
-              <span className="text-primary-400 text-sm">{company}</span>
+              <span className="text-primary-500 text-sm">{company}</span>
             </div>
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-              <span className="text-xs text-slate-500 tracking-wider">{duration}</span>
-              <span className="text-[10px] text-slate-600 px-2 py-0.5 rounded-full border border-slate-800/50">
+              <span className="text-xs text-surface-500 tracking-wider">{duration}</span>
+              <span className="text-[10px] text-surface-500 px-2 py-0.5 rounded-full border border-surface-200">
                 {type}
               </span>
             </div>
@@ -57,7 +57,7 @@ function ExperienceCard({
           <motion.div
             animate={{ rotate: expanded ? 180 : 0 }}
             transition={{ duration: 0.3 }}
-            className="text-slate-600 mt-1 shrink-0"
+            className="text-surface-400 mt-1 shrink-0"
           >
             <ChevronDown size={16} />
           </motion.div>
@@ -72,13 +72,13 @@ function ExperienceCard({
           transition={{ duration: 0.3 }}
           className="overflow-hidden"
         >
-          <ul className="mt-4 space-y-2.5 border-t border-white/5 pt-4">
+          <ul className="mt-4 space-y-2.5 border-t border-surface-200 pt-4">
             {highlights.map((h, i) => (
               <li
                 key={i}
-                className="flex items-start gap-2.5 text-sm text-slate-400 leading-relaxed"
+                className="flex items-start gap-2.5 text-sm text-surface-600 leading-relaxed"
               >
-                <span className="w-1 h-1 rounded-full bg-primary-400/60 mt-2 shrink-0" />
+                <span className="w-1 h-1 rounded-full bg-primary-500/60 mt-2 shrink-0" />
                 {h}
               </li>
             ))}
@@ -101,8 +101,8 @@ export default function Experience() {
   const hiddenCount = resumeData.experience.length - INITIAL_VISIBLE;
 
   return (
-    <section id="experience" className="relative py-24 sm:py-32 px-6 sm:px-8">
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-950 via-dark-900 to-dark-950" />
+    <section id="experience" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12">
+      <div className="absolute inset-0 bg-gradient-to-b from-surface-50 via-surface-100/50 to-surface-50 pointer-events-none" />
 
       <div ref={ref} className="relative max-w-4xl mx-auto">
         <motion.div
@@ -111,10 +111,10 @@ export default function Experience() {
           transition={{ duration: 0.7 }}
           className="mb-16"
         >
-          <span className="text-primary-400 text-xs font-medium tracking-[0.2em] uppercase">
+          <span className="text-primary-500 text-xs font-medium tracking-[0.2em] uppercase">
             Career Journey
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-surface-900 mt-4">
             WORK <span className="gradient-text">EXPERIENCE</span>
           </h2>
         </motion.div>
@@ -134,9 +134,9 @@ export default function Experience() {
           >
             <button
               onClick={() => setShowAll(true)}
-              className="px-6 py-3 border border-slate-700/50 text-slate-400 rounded-full text-sm tracking-wider hover:border-primary-400/40 hover:text-white transition-all duration-300"
+              className="inline-flex items-center justify-center whitespace-nowrap min-w-[200px] px-6 py-3 border border-surface-300 text-surface-600 rounded-xl text-sm tracking-wider hover:border-primary-400 hover:text-primary-600 transition-all duration-300"
             >
-              SHOW {hiddenCount} MORE POSITIONS
+              Show {hiddenCount} More Positions
             </button>
           </motion.div>
         )}
@@ -149,9 +149,9 @@ export default function Experience() {
           >
             <button
               onClick={() => setShowAll(false)}
-              className="px-6 py-3 border border-slate-700/50 text-slate-400 rounded-full text-sm tracking-wider hover:border-primary-400/40 hover:text-white transition-all duration-300"
+              className="inline-flex items-center justify-center whitespace-nowrap min-w-[200px] px-6 py-3 border border-surface-300 text-surface-600 rounded-xl text-sm tracking-wider hover:border-primary-400 hover:text-primary-600 transition-all duration-300"
             >
-              SHOW LESS
+              Show Less
             </button>
           </motion.div>
         )}

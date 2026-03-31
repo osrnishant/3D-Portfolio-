@@ -3,27 +3,32 @@
 @theme {
   --font-sans: 'Inter', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
-  --color-primary-50: #e6f7ff;
-  --color-primary-100: #b3e5ff;
-  --color-primary-200: #80d4ff;
-  --color-primary-300: #4dc3ff;
-  --color-primary-400: #1ab2ff;
-  --color-primary-500: #0099e6;
-  --color-primary-600: #0077b3;
-  --color-primary-700: #005580;
-  --color-primary-800: #00334d;
-  --color-primary-900: #00111a;
-  --color-accent-400: #00e6a0;
-  --color-accent-500: #00c987;
-  --color-accent-600: #00a36e;
-  --color-warm-400: #f0a050;
-  --color-warm-500: #e08830;
-  --color-dark-950: #04060b;
-  --color-dark-900: #070b14;
-  --color-dark-800: #0c1220;
-  --color-dark-700: #111a2e;
-  --color-dark-600: #172236;
-  --color-dark-500: #1e2d45;
+  --color-primary-50: #eef8ff;
+  --color-primary-100: #d8eeff;
+  --color-primary-200: #b9e0ff;
+  --color-primary-300: #89ceff;
+  --color-primary-400: #52b4ff;
+  --color-primary-500: #2a96ff;
+  --color-primary-600: #1376f5;
+  --color-primary-700: #0c5fe1;
+  --color-primary-800: #104db6;
+  --color-primary-900: #13438f;
+  --color-accent-400: #34d399;
+  --color-accent-500: #10b981;
+  --color-accent-600: #059669;
+  --color-warm-400: #fb923c;
+  --color-warm-500: #f97316;
+  --color-surface-50: #fafbfc;
+  --color-surface-100: #f1f5f9;
+  --color-surface-200: #e2e8f0;
+  --color-surface-300: #cbd5e1;
+  --color-surface-400: #94a3b8;
+  --color-surface-500: #64748b;
+  --color-surface-600: #475569;
+  --color-surface-700: #334155;
+  --color-surface-800: #1e293b;
+  --color-surface-900: #0f172a;
+  --color-surface-950: #020617;
 }
 
 * {
@@ -37,8 +42,8 @@ html {
 }
 
 body {
-  background-color: var(--color-dark-950);
-  color: #c8d6e5;
+  background-color: var(--color-surface-50);
+  color: var(--color-surface-700);
   font-family: var(--font-sans);
   overflow-x: hidden;
   line-height: 1.6;
@@ -49,21 +54,21 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-dark-950);
+  background: var(--color-surface-100);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-dark-600);
+  background: var(--color-surface-300);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-dark-500);
+  background: var(--color-surface-400);
 }
 
 ::selection {
-  background-color: rgba(0, 153, 230, 0.3);
-  color: white;
+  background-color: rgba(42, 150, 255, 0.2);
+  color: var(--color-surface-900);
 }
 
 @keyframes float {
@@ -91,7 +96,7 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #1ab2ff, #00e6a0, #1ab2ff);
+  background: linear-gradient(135deg, #2a96ff, #10b981, #2a96ff);
   background-size: 200% 200%;
   animation: gradient-shift 4s ease infinite;
   -webkit-background-clip: text;
@@ -100,24 +105,44 @@ body {
 }
 
 .glass-card {
-  background: rgba(12, 18, 32, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .glass-card:hover {
-  border-color: rgba(26, 178, 255, 0.15);
-  background: rgba(12, 18, 32, 0.75);
+  border-color: rgba(42, 150, 255, 0.3);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 16px rgba(42, 150, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .glow-line {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(26, 178, 255, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(42, 150, 255, 0.3), transparent);
 }
 
 .dot-grid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
   background-size: 32px 32px;
+}
+
+.section-dark {
+  background: linear-gradient(180deg, var(--color-surface-900) 0%, #0c1629 50%, var(--color-surface-900) 100%);
+  color: var(--color-surface-200);
+}
+
+.section-dark .glass-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.section-dark .glass-card:hover {
+  border-color: rgba(42, 150, 255, 0.25);
+  background: rgba(15, 23, 42, 0.75);
+  box-shadow: 0 4px 16px rgba(42, 150, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 img {

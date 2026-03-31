@@ -7,15 +7,15 @@ const categoryColors: Record<string, string> = {
   Channels: 'from-accent-400 to-accent-600',
   Web3: 'from-warm-400 to-warm-500',
   Tools: 'from-primary-300 to-accent-400',
-  Other: 'from-slate-400 to-slate-600',
+  Other: 'from-surface-400 to-surface-600',
 };
 
 const categoryBorders: Record<string, string> = {
-  Marketing: 'border-primary-500/20 hover:border-primary-500/40',
-  Channels: 'border-accent-500/20 hover:border-accent-500/40',
-  Web3: 'border-warm-400/20 hover:border-warm-400/40',
-  Tools: 'border-primary-400/20 hover:border-primary-400/40',
-  Other: 'border-slate-500/20 hover:border-slate-500/40',
+  Marketing: 'border-primary-500/30 hover:border-primary-500/50',
+  Channels: 'border-accent-500/30 hover:border-accent-500/50',
+  Web3: 'border-warm-400/30 hover:border-warm-400/50',
+  Tools: 'border-primary-400/30 hover:border-primary-400/50',
+  Other: 'border-surface-400/30 hover:border-surface-400/50',
 };
 
 function SkillCategory({
@@ -40,7 +40,7 @@ function SkillCategory({
     >
       <div className="flex items-center gap-3 mb-6">
         <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${categoryColors[category]}`} />
-        <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
+        <h3 className="text-sm font-semibold text-surface-900 tracking-wider uppercase">
           {category}
         </h3>
       </div>
@@ -51,7 +51,7 @@ function SkillCategory({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.3, delay: index * 0.1 + i * 0.04 }}
-            className={`px-4 py-2 text-xs rounded-full border ${categoryBorders[category]} text-slate-300 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 cursor-default`}
+            className={`px-4 py-2 text-xs rounded-full border ${categoryBorders[category]} text-surface-600 bg-surface-50/80 hover:bg-white transition-all duration-300 cursor-default`}
           >
             {skill}
           </motion.span>
@@ -68,7 +68,7 @@ export default function Skills() {
   const categories = Object.entries(resumeData.skills);
 
   return (
-    <section id="skills" className="relative py-24 sm:py-32 px-6 sm:px-8">
+    <section id="skills" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12">
       <div ref={ref} className="relative max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -76,10 +76,10 @@ export default function Skills() {
           transition={{ duration: 0.7 }}
           className="mb-16"
         >
-          <span className="text-primary-400 text-xs font-medium tracking-[0.2em] uppercase">
+          <span className="text-primary-500 text-xs font-medium tracking-[0.2em] uppercase">
             Expertise
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-surface-900 mt-4">
             CORE <span className="gradient-text">SKILLS</span>
           </h2>
         </motion.div>
